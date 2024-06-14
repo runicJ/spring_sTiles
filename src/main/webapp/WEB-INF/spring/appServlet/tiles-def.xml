@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Spring io에서 찾아와야함(아래 라이브러리 주입했기 때문에 사용 가능) -->
+<!DOCTYPE tiles-definitions PUBLIC 
+  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+ 
+ <tiles-definitions>
+ 	<!-- tiles 레이아웃을 적용하지 않을 경우의 화면(login 전에 기술할 내용) -->
+ 	<!-- 아래 이름은 마음대로(setter X) -->
+ 	<definition name="layoutNo" template="/WEB-INF/views/layout/loginLayout.jsp" />
+ 	<!-- 파일명 member 아래 모든 파일 적용하지 않을래! /* // 위치 줘야함 -->
+ 	<definition name="member/*" extends="layoutNo">
+ 		<!-- 파일명x // 파일명 아직 모르니까 경로면 써주기 // xml 안에 EL x -->
+ 		<put-attribute name="body" value="/WEB-INF/views/member/{1}.jsp" />
+ 	</definition>
+ 	
+ 	<!-- tiles 레이아웃을 적용하는 경우의 화면(login 후에 인증 처리된 파일에 기술할 내용) -->
+	<definition name="layoutYes" template="/WEB-INF/views/layout/baseLayout.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/layout/header.jsp" />
+		<put-attribute name="nav" value="/WEB-INF/views/layout/nav.jsp" />
+		<put-attribute name="aside" value="/WEB-INF/views/layout/aside.jsp" />
+		<put-attribute name="aside2" value="/WEB-INF/views/layout/aside2.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp" />
+	</definition>
+ 	<!-- 앞뒤로 어떤 파일이 들어와도ㅇㅇ // */*/* 이렇게 하면 404 확률 있음 // layoutYes에 확장되는 얘야 -->
+ 	<definition name="*/*" extends="layoutYes">
+	 	<!-- 위의 body와 이름만 같고 다른 body임 // 1 {폴더명} 2 {파일명} -->
+ 		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
+ 	</definition>
+ 	<!-- 폴더 안에 폴더 넣고 싶을때(있는 개수만큼 나열, */*/* 대신 사용) -->
+	<definition name="*/*/*" extends="layoutYes">
+	  <put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
+	</definition>
+ 	
+ </tiles-definitions>
