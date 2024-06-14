@@ -9,6 +9,17 @@
 	<title>baseLayout.jsp</title>
   <jsp:include page="/WEB-INF/views/include/bs4.jsp" />
   <style>
+  	.bodyLeft {
+      float: left;
+      width: 15%;
+    }
+    .bodyCenter {
+      float: left;
+      width: 70%;
+    }
+    .footer {
+      clear: both;
+    }
 /*   	div.sidenav {
 		  list-style-type: none;
 		  margin: 0;
@@ -62,9 +73,12 @@
 <tiles:insertAttribute name="nav" />
 <p><br/></p>
 <div class="container text-center" style="height:800px">
-	<%-- <div style="width:20%;"><tiles:insertAttribute name="aside" /></div> --%>
-	<div class="content"><tiles:insertAttribute name="body" /></div>
-	<%-- <div><tiles:insertAttribute name="aside2" /></div> --%>
+  <div class="bodyLeft">
+    <tiles:insertAttribute name="aside" />
+  </div>
+  <div class="bodyCenter">
+	  <tiles:insertAttribute name="body" />
+	</div>
 </div>
 <tiles:insertAttribute name="footer" />
 <p><br><p>

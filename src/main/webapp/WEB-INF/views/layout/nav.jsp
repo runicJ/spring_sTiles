@@ -47,6 +47,7 @@
 	<li><a href="${ctp}/tiles/pdsList">자료실</a></li>
 	<li><a href="${ctp}/tiles/myPage">MyPage</a></li>
 	<li><a href="${ctp}/tiles/memberLogout">로그아웃</a></li>
+	<li><a href="${ctp}/tiles/aria">Aria암호화</a></li>
 </ul>
 </body>
 </html>
